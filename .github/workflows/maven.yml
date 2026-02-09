@@ -1,4 +1,4 @@
-name: Maven Build Pipeline
+name: Maven Regression Test Pipeline
 
 on:
   push:
@@ -9,14 +9,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Code
-      uses: actions/checkout@v4
+    - uses: actions/checkout@v4
 
-    - name: Set up Java
+    - name: Setup Java
       uses: actions/setup-java@v4
       with:
-        java-version: '17'
+        java-version: '25'
         distribution: 'temurin'
 
-    - name: Build with Maven
-      run: mvn clean install
+    - name: Run Maven Tests
+      run: mvn clean test
